@@ -63,6 +63,7 @@
 #pragma clang diagnostic pop
 #endif
 
+#define TINYEXR_IMPLEMENTATION
 #include "tinyexr.h"
 
 
@@ -243,9 +244,9 @@ int main(int argc, char** argv)
     header.num_channels = 3;
     header.channels = (EXRChannelInfo*)malloc(sizeof(EXRChannelInfo) * header.num_channels);
     // Must be BGR(A) order, since most of EXR viewers expect this channel order.
-    strncpy_s(header.channels[0].name, "B", 255); header.channels[0].name[strlen("B")] = '\0';
-    strncpy_s(header.channels[1].name, "G", 255); header.channels[1].name[strlen("G")] = '\0';
-    strncpy_s(header.channels[2].name, "R", 255); header.channels[2].name[strlen("R")] = '\0';
+    strncpy(header.channels[0].name, "B", 255); header.channels[0].name[strlen("B")] = '\0';
+    strncpy(header.channels[1].name, "G", 255); header.channels[1].name[strlen("G")] = '\0';
+    strncpy(header.channels[2].name, "R", 255); header.channels[2].name[strlen("R")] = '\0';
 
     header.pixel_types = (int*)malloc(sizeof(int) * header.num_channels);
     header.requested_pixel_types = (int*)malloc(sizeof(int) * header.num_channels);
